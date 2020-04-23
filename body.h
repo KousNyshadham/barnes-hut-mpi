@@ -3,15 +3,17 @@
 
 class Body{
     private:
-    double index;
     double xpos;
     double ypos;
     double mass;
     double xvel;
     double yvel; 
+    bool internal;
 
     public:
-    Body(double index, double xpos, double ypos, double mass, double xvel, double yvel);
+    double index;
+    Body();
+    Body(double index, double xpos, double ypos, double mass, double xvel, double yvel, bool internal);
 
 };
 #endif

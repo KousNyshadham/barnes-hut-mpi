@@ -1,8 +1,10 @@
 #include <string>
-#include "body.h"
 #include <vector>
 #include <fstream>
 #include <iostream>
+#include "body.h"
+#include "quadtree.h"
+#include "quad.h"
 int main(int argc, char* argv[]){
     std::string inputfilename;
     std::string outputfilename;
@@ -56,7 +58,14 @@ int main(int argc, char* argv[]){
         if(value != ""){
             bodyprops.push_back(std::stod(value));
         }
-        Body body(bodyprops[0],bodyprops[1],bodyprops[2],bodyprops[3],bodyprops[4],bodyprops[5]);
+        Body body(bodyprops[0],bodyprops[1],bodyprops[2],bodyprops[3],bodyprops[4],bodyprops[5], false);
         bodies.push_back(body);
+    }
+    for(int i = 0; i < steps; i++){
+        Quad quad(0,0,4);
+        QuadTree quadtree(quad);
+        for(int j = 0; j < bodies.size(); j++){
+            quadtree.insert(bodies[i]);
+        }
     }
 }
