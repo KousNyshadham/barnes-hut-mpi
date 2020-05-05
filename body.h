@@ -11,9 +11,9 @@ class Body{
     double xforce;
     double yforce;
     bool internal;
-    double index;
+    int index;
 
-    Body(double index, double xpos, double ypos, double mass, double xvel, double yvel, bool internal);
+    Body(int index, double xpos, double ypos, double mass, double xvel, double yvel, bool internal);
     void addForce(Body* b);
     static Body* add(Body* a, Body* b);
     static Body* specializedAdd(Body* a, Body* b);

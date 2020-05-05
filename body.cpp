@@ -2,7 +2,7 @@
 #include "global.h"
 #include <math.h>
 #include <iostream>
-Body::Body(double index, double xpos, double ypos, double mass, double xvel, double yvel, bool internal){
+Body::Body(int index, double xpos, double ypos, double mass, double xvel, double yvel, bool internal){
     this->index = index;
     this->xpos = xpos;
     this->ypos = ypos;

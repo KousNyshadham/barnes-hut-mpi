@@ -60,7 +60,7 @@ int main(int argc, char* argv[]){
         if(value != ""){
             bodyprops.push_back(std::stod(value));
         }
-        Body* body = new Body(bodyprops[0],bodyprops[1],bodyprops[2],bodyprops[3],bodyprops[4],bodyprops[5], false);
+        Body* body = new Body((int)bodyprops[0],bodyprops[1],bodyprops[2],bodyprops[3],bodyprops[4],bodyprops[5], false);
         bodies[i] = body;
     }
     for(int i = 0; i < steps; i++){
