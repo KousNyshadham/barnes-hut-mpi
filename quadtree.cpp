@@ -53,6 +53,9 @@ void QuadTree::updateForce(Body* mod){
 }
 
 void QuadTree::insert(Body* ins){
+    if(ins->mass == -1){
+        return;
+    }
     if(body == nullptr){
         body = ins;
     }

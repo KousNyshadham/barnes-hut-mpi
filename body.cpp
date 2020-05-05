@@ -21,6 +21,9 @@ void Body::update(){
     ypos = ypos + yvel * dt + 0.5*ay*pow(dt,2);
     xvel = xvel + ax*dt;
     yvel = yvel + ay*dt;
+    if(xpos < 0 || xpos > 4 || ypos < 0 || ypos > 4){
+        mass = -1;
+    }
 }
 
 void Body::resetForce(){
