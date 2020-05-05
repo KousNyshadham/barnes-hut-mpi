@@ -2,18 +2,22 @@
 #define BODY
 
 class Body{
-    private:
+    public:
     double xpos;
     double ypos;
     double mass;
     double xvel;
     double yvel; 
+    double xforce;
+    double yforce;
     bool internal;
-
-    public:
     double index;
-    Body();
-    Body(double index, double xpos, double ypos, double mass, double xvel, double yvel, bool internal);
 
+    Body(double index, double xpos, double ypos, double mass, double xvel, double yvel, bool internal);
+    void addForce(Body* b);
+    static Body* add(Body* a, Body* b);
+    static Body* specializedAdd(Body* a, Body* b);
+    void update();
+    void resetForce();
 };
 #endif
