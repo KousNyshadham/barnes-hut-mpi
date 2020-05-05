@@ -75,7 +75,6 @@ int main(int argc, char* argv[]){
             bodies[j]->update();
         }
         free(quadtree);
-
     }
     std::ofstream out;
     out.open(outputfilename);

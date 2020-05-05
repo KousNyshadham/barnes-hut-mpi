@@ -2,6 +2,7 @@
 #include "quad.h"
 #include "global.h"
 #include <math.h>
+#include <iostream>
 
 QuadTree::QuadTree(Quad* quad){
     body = nullptr;

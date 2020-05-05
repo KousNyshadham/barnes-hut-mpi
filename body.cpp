@@ -36,7 +36,7 @@ void Body::addForce(Body* b){
     double dx = b->xpos-this->xpos;
     double dy = b->ypos-this->ypos;
     this->xforce+= (G*this->mass*b->mass*dx)/denominator;
-    this->yforce+= (G*this->mass*b->mass*dx)/denominator;
+    this->yforce+= (G*this->mass*b->mass*dy)/denominator;
 }
 
 Body* Body::specializedAdd(Body* a, Body* b){
