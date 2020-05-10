@@ -2,6 +2,10 @@
 #include "global.h"
 #include <math.h>
 #include <iostream>
+Body::Body(){
+    this->index = -1;
+}
+
 Body::Body(int index, double xpos, double ypos, double mass, double xvel, double yvel, bool internal){
     this->index = index;
     this->xpos = xpos;
@@ -26,32 +30,24 @@ void Body::update(){
     }
 }
 
-void Body::resetForce(){
-    this->xforce = 0;
-    this->yforce = 0;
+void Body::resetForce(int in){
+    bodies[in].xforce = 0;
+    bodies[in].yforce = 0;
 }
-
-void Body::addForce(Body* b){
+void Body::addForce(Body b){
     double G = 0.0001;
-    double distance = sqrt(pow(xpos-b->xpos,2)+pow(ypos-b->ypos,2));
+    double distance = sqrt(pow(xpos-b.xpos,2)+pow(ypos-b.ypos,2));
     double rlimit = 0.03;
     double denominator = distance < rlimit ? (distance * rlimit * rlimit) : (distance * distance * distance);
-    double dx = b->xpos-this->xpos;
-    double dy = b->ypos-this->ypos;
-    this->xforce+= (G*this->mass*b->mass*dx)/denominator;
-    this->yforce+= (G*this->mass*b->mass*dy)/denominator;
+    double dx = b.xpos-this->xpos;
+    double dy = b.ypos-this->ypos;
+    this->xforce+= (G*this->mass*b.mass*dx)/denominator;
+    this->yforce+= (G*this->mass*b.mass*dy)/denominator;
 }
 
-Body* Body::specializedAdd(Body* a, Body* b){
-    double m = a->mass + b->mass;
-    double x = (a->xpos*a->mass + b->xpos*b->mass)/m;
-    double y = (a->ypos*a->mass + b->ypos*b->mass)/m;
-    delete a;
-    return new Body(-69, x, y, m, -69,-69, true);
-}
-Body* Body::add(Body* a, Body* b){
-    double m = a->mass + b->mass;
-    double x = (a->xpos*a->mass + b->xpos*b->mass)/m;
-    double y = (a->ypos*a->mass + b->ypos*b->mass)/m;
-    return new Body(-69, x, y, m, -69,-69, true);
+Body Body::add(Body a, Body b){
+    double m = a.mass + b.mass;
+    double x = (a.xpos*a.mass + b.xpos*b.mass)/m;
+    double y = (a.ypos*a.mass + b.ypos*b.mass)/m;
+    return Body(-69, x, y, m, -69,-69, true);
 }

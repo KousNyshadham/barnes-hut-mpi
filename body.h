@@ -13,11 +13,12 @@ class Body{
     bool internal;
     int index;
 
+    Body();
     Body(int index, double xpos, double ypos, double mass, double xvel, double yvel, bool internal);
-    void addForce(Body* b);
-    static Body* add(Body* a, Body* b);
-    static Body* specializedAdd(Body* a, Body* b);
+    void addForce(Body b);
+    static Body add(Body a, Body b);
+    static Body specializedAdd(Body a, Body b);
     void update();
-    void resetForce();
+    static void resetForce(int in);
 };
 #endif

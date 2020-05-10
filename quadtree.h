@@ -5,18 +5,18 @@
 
 class QuadTree{
     private:
-    Body* body;
     QuadTree* NE;
     QuadTree* NW;
     QuadTree* SE;
     QuadTree* SW;
 
     public:
+    Body body;
     Quad* quad;
     QuadTree(Quad* quad);
     ~QuadTree();
-    void insert(Body* ins);
-    void updateForce(Body* mod);
+    void insert(Body ins);
+    void updateForce(int mod);
 };
 
 #endif

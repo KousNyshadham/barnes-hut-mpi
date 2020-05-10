@@ -11,6 +11,7 @@ double theta;
 double dt;
 bool visualization;
 int n;
+std::vector<Body> bodies;
 int main(int argc, char* argv[]){
     std::string inputfilename;
     std::string outputfilename;
@@ -42,7 +43,6 @@ int main(int argc, char* argv[]){
     std::string stringn;
     std::getline(inputfile, stringn);
     n = std::stoi(stringn);
-    Body* bodies[n];
     for(int i = 0; i < n; i++){
         std::string line;
         std::getline(inputfile, line);
@@ -60,8 +60,8 @@ int main(int argc, char* argv[]){
         if(value != ""){
             bodyprops.push_back(std::stod(value));
         }
-        Body* body = new Body((int)bodyprops[0],bodyprops[1],bodyprops[2],bodyprops[3],bodyprops[4],bodyprops[5], false);
-        bodies[i] = body;
+        Body body((int)bodyprops[0],bodyprops[1],bodyprops[2],bodyprops[3],bodyprops[4],bodyprops[5], false);
+        bodies.push_back(body);
     }
     for(int i = 0; i < steps; i++){
         Quad* quad = new Quad(0, 0, 4);
@@ -70,9 +70,9 @@ int main(int argc, char* argv[]){
             quadtree->insert(bodies[j]);
         }
         for(int j = 0; j < n; j++){
-            bodies[j]->resetForce();
-            quadtree->updateForce(bodies[j]);
-            bodies[j]->update();
+            bodies[j].resetForce(j);
+            quadtree->updateForce(j);
+            bodies[j].update();
         }
         free(quadtree);
     }
@@ -80,8 +80,7 @@ int main(int argc, char* argv[]){
     out.open(outputfilename);
     out.setf(std::ios::scientific);
     for(int i = 0; i < n; i++){
-        out << bodies[i]->index << " " << bodies[i]->xpos << " " << bodies[i]->ypos << " " << bodies[i]->mass << " " << bodies[i] ->xvel << " " << bodies[i] ->yvel << std::endl;
-        free(bodies[i]);
+        out << bodies[i].index << " " << bodies[i].xpos << " " << bodies[i].ypos << " " << bodies[i].mass << " " << bodies[i].xvel << " " << bodies[i].yvel << std::endl;
     }
     out.close();
 }
