@@ -30,9 +30,9 @@ void Body::update(){
     }
 }
 
-void Body::resetForce(int in){
-    bodies[in].xforce = 0;
-    bodies[in].yforce = 0;
+void Body::resetForce(){
+    this->xforce = 0;
+    this->yforce = 0;
 }
 void Body::addForce(Body b){
     double G = 0.0001;

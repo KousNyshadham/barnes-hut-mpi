@@ -16,7 +16,7 @@ class QuadTree{
     QuadTree(Quad* quad);
     ~QuadTree();
     void insert(Body ins);
-    void updateForce(int mod);
+    void updateForce(int mod, Body*);
 };
 
 #endif

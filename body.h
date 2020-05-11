@@ -19,6 +19,6 @@ class Body{
     static Body add(Body a, Body b);
     static Body specializedAdd(Body a, Body b);
     void update();
-    static void resetForce(int in);
+    void resetForce();
 };
 #endif

@@ -26,7 +26,7 @@ QuadTree::~QuadTree(){
     }
 }
 
-void QuadTree::updateForce(int mod){
+void QuadTree::updateForce(int mod, Body* bodies){
     if(body.index == -1){
         return;
     }
@@ -42,10 +42,10 @@ void QuadTree::updateForce(int mod){
                 bodies[mod].addForce(body);
             }
             else{
-                this->SW->updateForce(mod);
-                this->NW->updateForce(mod);
-                this->SE->updateForce(mod);
-                this->NE->updateForce(mod);
+                this->SW->updateForce(mod,bodies);
+                this->NW->updateForce(mod,bodies);
+                this->SE->updateForce(mod,bodies);
+                this->NE->updateForce(mod,bodies);
             }
         }
     }
